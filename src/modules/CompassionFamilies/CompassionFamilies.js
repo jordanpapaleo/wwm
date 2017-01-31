@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Entity from '../../components/Entity'
 
 const mapStateToProps = state => ({
   compassionFamilies: state.compassionFamilies
@@ -14,11 +15,22 @@ export default class CompassionFamilies extends Component {
     compassionFamilies: PropTypes.array
   }
 
-  state = {}
-
   render () {
+    const {compassionFamilies} = this.props
+
     return (
-      <div>CompassionFamilies</div>
+      <div>
+        <h2>Compassion Families</h2>
+        <ul>
+          {compassionFamilies.map((family) => {
+            return (
+              <li key={family}>
+                <Entity data={family} />
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     )
   }
 }

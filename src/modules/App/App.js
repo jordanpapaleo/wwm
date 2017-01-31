@@ -4,6 +4,9 @@ import { bindActionCreators } from 'redux'
 import MainNav from './MainNav'
 // import { exampleActionSync, exampleActionAsync } from '../../actions/exampleAction'
 
+import injectSheet from 'react-jss'
+import { appStyles } from './app.jss'
+
 const mapStateToProps = state => ({
   families: state.families,
   compassionFamilies: state.compassionFamilies,
@@ -15,12 +18,14 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
 }, dispatch))
 
 @connect(mapStateToProps, mapDispatchToProps)
+@injectSheet(appStyles)
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.node,
     compassionFamilies: PropTypes.array.isRequired,
     counselors: PropTypes.array.isRequired,
-    families: PropTypes.array.isRequired
+    families: PropTypes.array.isRequired,
+    sheet: PropTypes.object
   }
 
   state = {}
@@ -32,17 +37,7 @@ export default class App extends Component {
       <div>
         <h1>Walk with me</h1>
         <MainNav />
-        { this.renderThing() }
         <section>{children}</section>
-      </div>
-    )
-  }
-
-  renderThing () {
-    return (
-      <div style={{ display: 'flex', border: '1px solid grey', height: 100, alignItems: 'stretch' }}>
-        <div style={{ width: 20, backgroundColor: 'orange' }}></div>
-        <div style={{ flexGrow: 1, backgroundColor: 'yellow' }}></div>
       </div>
     )
   }

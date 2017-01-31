@@ -1,3 +1,18 @@
 * {
   box-sizing: border-box;
 }
+
+h1, h2, h3, h4, h5, p, ul, li, ol, a {
+  font-size: 16px;
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  text-transform: none;
+
+  ul, li {
+    list-style-type: none;
+  }
+}

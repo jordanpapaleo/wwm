@@ -18,7 +18,7 @@ export default combineReducers({
   routing: routerReducer
 })
 
-const ds = {
+/* const ds = {
   groups: {
     families: [],
     compassionFamilies: [],
@@ -29,4 +29,4 @@ const ds = {
 
     }
   ]
-}
+} */

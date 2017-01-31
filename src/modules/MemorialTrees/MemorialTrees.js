@@ -17,8 +17,23 @@ export default class MemorialTrees extends Component {
   state = {}
 
   render () {
+    const {memorialTrees} = this.props
+
     return (
-      <div>MemorialTrees</div>
+      <div>
+        <h2>Memorial Trees</h2>
+        <ul>
+          {memorialTrees.map((memorialTree) => {
+            return (
+              <li>
+                <h3>{memorialTree.city}</h3>
+                <p>{memorialTree.notes}</p>
+                <p>{memorialTree.updatedAt.toString()}</p>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     )
   }
 }
