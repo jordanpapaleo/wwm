@@ -3,17 +3,23 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Entity from '../../components/Entity'
 import PersonForm from '../../components/PersonForm'
+import GroupForm from '../../components/GroupForm'
+import {saveCounselor, deleteCounselor} from '../../actions/counselorActions'
 
 const mapStateToProps = state => ({
   counselors: state.counselors
 })
 
-const mapDispatchToProps = dispatch => (bindActionCreators({}, dispatch))
+const mapDispatchToProps = dispatch => (bindActionCreators({
+  saveCounselor, deleteCounselor
+}, dispatch))
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Counselors extends Component {
   static propTypes = {
-    counselors: PropTypes.array
+    counselors: PropTypes.array,
+    deleteCounselor: PropTypes.func.isRequired,
+    saveCounselor: PropTypes.func.isRequired
   }
 
   state = {
@@ -25,11 +31,17 @@ export default class Counselors extends Component {
   }
 
   submit = (counselor) => {
+    console.log('submit', counselor)
+    this.props.saveCounselor(counselor)
     this.setState({ activePerson: null })
   }
 
   cancel = () => {
     this.setState({ activePerson: null })
+  }
+
+  delete = (counselor) => {
+    this.props.deleteCounselor(counselor)
   }
 
   render () {
@@ -42,14 +54,17 @@ export default class Counselors extends Component {
         <button onClick={this.showForm.bind(this, {})}>New</button>
         {activePerson && <PersonForm person={activePerson} submitCb={this.submit} cancelCb={this.cancel} />}
         <ul>
-          {counselors.map((counselor) => {
+          {counselors.map((counselor, i) => {
             return (
-              <li key={counselor}>
+              <li key={`counselor-${i}`}>
                 <Entity data={counselor} editCb={this.showForm.bind(this, counselor)} />
+                <button type="button" onClick={this.delete.bind(this, counselor)}>[X]</button>
               </li>
             )
           })}
         </ul>
+
+        <GroupForm />
       </div>
     )
   }

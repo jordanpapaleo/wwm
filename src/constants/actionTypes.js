@@ -1,2 +1,5 @@
 export const SYNC_CLICK = 'SYNC_CLICK'
 export const ASYNC_CLICK = 'ASYNC_CLICK'
+
+export const COUNSELOR = 'COUNSELOR'
+export const DELETE_COUNSELOR = 'DELETE_COUNSELOR'

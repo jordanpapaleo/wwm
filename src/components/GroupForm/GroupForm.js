@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import PersonForm from '../components/PersonForm'
+// import PersonForm from '../PersonForm'
+import {Input} from '../Forms'
 
 const DEFAULT_FORM = {
   group: {
@@ -56,11 +57,12 @@ export default class GroupForm extends Component {
 
   updateForm = (type, value) => {
     this.setState({
-      person: {
+      group: {
+        ...this.state.group,
         [type]: value
       }
     }, () => {
-      console.log(this.state.person)
+      console.log(this.state.group)
     })
   }
 
@@ -68,7 +70,10 @@ export default class GroupForm extends Component {
     const {group} = this.state
     return (
       <div className="form">
+        <Input name="name" placeholder="Group Name" type="string" value={group.name} cb={this.updateForm.bind(this)}/>
 
+        <button type="button" onClick={this.submit}>Save</button>
+        <button type="button" onClick={this.cancel}>Cancel</button>
       </div>
     )
   }

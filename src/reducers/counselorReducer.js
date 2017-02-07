@@ -1,4 +1,4 @@
-// import { SYNC_CLICK, ASYNC_CLICK } from '../constants/actionTypes'
+import { COUNSELOR, DELETE_COUNSELOR } from '../constants/actionTypes'
 
 const initialState = [{
   name: 'Joe Doc',
@@ -23,6 +23,10 @@ const initialState = [{
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case COUNSELOR:
+      return [...state, action.payload]
+    case DELETE_COUNSELOR:
+      return state
     default:
       return state
   }
