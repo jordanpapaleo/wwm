@@ -38,12 +38,9 @@ export default class PersonForm extends Component {
     })
   }
 
-  static defaultProps = {
-    ...DEFAULT_FORM
-  }
-
   state = {
     person: {
+      ...DEFAULT_FORM,
       ...this.props.person
     }
   }
@@ -82,29 +79,24 @@ export default class PersonForm extends Component {
   }
 
   render () {
-    const {person} = this.state
+    const {person, person: { address }} = this.state
+    console.log('Person', person)
 
     return (
-      <form>
+      <div className="form">
         <Input name="name" placeholder="Name" type="string" value={person.name} cb={this.updateForm.bind(this)}/>
         <Input name="phone" placeholder="Phone" type="string" value={person.phone} cb={this.updateForm.bind(this)}/>
 
-        <hr />
-
-        <Input name="street" placeholder="Street" type="string" value={person.address.street} cb={this.updateForm.bind(this)}/>
-        <Input name="city" placeholder="City" type="string" value={person.address.city} cb={this.updateForm.bind(this)}/>
-        <Input name="state" placeholder="State" type="string" value={person.address.state} cb={this.updateForm.bind(this)}/>
-        <Input name="zip" placeholder="Zip" type="string" value={person.address.zip} cb={this.updateForm.bind(this)}/>
-
-        <hr />
+        {/* <Input name="street" placeholder="Street" type="string" value={address.street} cb={this.updateForm.bind(this)}/> */}
+        {/* <Input name="city" placeholder="City" type="string" value={address.city} cb={this.updateForm.bind(this)}/> */}
+        {/* <Input name="state" placeholder="State" type="string" value={address.state} cb={this.updateForm.bind(this)}/> */}
+        {/* <Input name="zip" placeholder="Zip" type="string" value={address.zip} cb={this.updateForm.bind(this)}/> */}
 
         <Input name="notes" placeholder="Notes" type="string" value={person.notes} cb={this.updateForm.bind(this)}/>
 
-        <hr />
-
         <button type="button" onClick={this.submit}>Save</button>
         <button type="button" onClick={this.cancel}>Cancel</button>
-      </form>
+      </div>
     )
   }
 }

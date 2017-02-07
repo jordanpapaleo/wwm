@@ -21,12 +21,10 @@ export default class Counselors extends Component {
   }
 
   showForm = (counselor = {}) => {
-    console.log('counselor', counselor)
     this.setState({ activePerson: counselor })
   }
 
   submit = (counselor) => {
-    // TODO Save Person
     this.setState({ activePerson: null })
   }
 
@@ -38,12 +36,11 @@ export default class Counselors extends Component {
     const {counselors} = this.props
     const {activePerson} = this.state
 
-    console.log('activePerson', activePerson)
-
     return (
       <div>
         <h2>Counselors</h2>
-        <button onClick={this.showForm}>New</button>
+        <button onClick={this.showForm.bind(this, {})}>New</button>
+        {activePerson && <PersonForm person={activePerson} submitCb={this.submit} cancelCb={this.cancel} />}
         <ul>
           {counselors.map((counselor) => {
             return (
